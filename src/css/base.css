@@ -1,0 +1,15 @@
+*{margin:0;padding:0;}
+#sidebar{width:80%;height:100vh;position: absolute;left:0px;transition: all 0.5s}
+#sidebar .head{
+	height:100px;
+	background: yellow;
+}
+#sidebar ul li{
+	margin:16px 0;
+	height:30px;
+	line-height:30px;
+	display: inline-block;
+	width:100%;
+}
+.header{height:40px;background: #232323;text-align: center;line-height:40px;color:white;position:fixed;top:0;width:100%;z-index:1;}
+.header .right{position:absolute;right:10px;}

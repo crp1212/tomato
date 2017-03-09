@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport"   content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="./build/styles.css">
+</head>
+<body>
+<main>
+	<div id="app">
+		<div class="header">
+			<span>{{title}}</span>
+			<span class="right">confirm</span>
+		</div>
+		<div id="sidebar">
+			<div class="head"></div>
+			<ul>
+				<li class="fa fa-address-book" @click='countStart'>
+					<router-link to="./count" ref='count'>开始</router-link>
+				</li>
+				<li class="fa fa-address-book" @click='countStart'>
+					<router-link to="./edit" ref='edit'>编辑</router-link>
+				</li>
+			</ul>
+		</div>
+		<router-view></router-view>
+	</div>
+</main>
+<script src="./build/crp.js"></script>
+</body>
+</html>
