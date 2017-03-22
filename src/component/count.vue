@@ -7,7 +7,8 @@
 </template>
 <script>
 	import headChild from './text/header-text.vue'
-	import {headContentData} from "../storage/data.js"
+	import {headContentData,dataUpdate} from "../storage/data.js"
+	import {sto} from "../storage/storage.js"
 	export default {
 		data:function(){
 			return {
@@ -55,7 +56,8 @@
 					ctx.stroke();
 					
 				}
-				run()
+				run();
+				var _this=this
 				this.timer=setInterval(()=>{
 					i++;
 					x++;
@@ -63,14 +65,18 @@
 						sec--;
 						i=0;
 					};
-					if(sec==0){clearInterval(timer); }
+					if(sec==0){//计时完毕后
+						clearInterval(_this.timer);
+						var index=JSON.parse(sto('planDoing')).index;
+						dataUpdate({"index":index},'unFinishedPlan')
+					 }
 					ctx.clearRect(0,0,winWidth,winHeight)
 					run();
 				},1000/sep)
 			},
 			countStart:function(){
 				this.isShow=false;
-				this.countFn(1500,25);
+				this.countFn(3,25);
 			},
 			headBtnFn:function(){
 				this.isShow=true;

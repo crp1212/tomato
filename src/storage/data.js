@@ -36,7 +36,7 @@ var settingData=function(str){
 	var arr=[]
 	settingList[str].forEach((x)=>{
 		for(var i in x){
-			if(str=='count'){console.log(sto(x[i][0]),x[i][0])}
+			//if(str=='count'){console.log(sto(x[i][0]),x[i][0])}
 			var val=sto(x[i][0])?sto(x[i][0]):x[i][1];
 			arr.push({
 				option:i,
@@ -47,13 +47,13 @@ var settingData=function(str){
 	return arr
 }
 var contentListData=function(mod){
-	//规定数据应该是[{content:"",countNum:"",startTime:"",endTime:""},{}]
+	//规定数据应该是[{content:"",countNum:"",startTime:"",countNumEnd:""},{}]
 	var arr=[];
 	if(sto(saveList[mod])){
-		
+		console.log(sto(saveList[mod]))
 		JSON.parse(sto(saveList[mod])).forEach((x)=>{
 			arr.push(
-				{content:x.content,nums:x.countNum}
+				{content:x.content,nums:x.countNum-x.countNumEnd}
 			)
 		})	
 	}
@@ -87,4 +87,12 @@ var countAdd=function(num){
 var settingDataKeep=function(){
 	
 }
-export {settingData,contentListData,headContentData,contentSaveData as saveData,countAdd}
+var dataUpdate=function(obj,mod){
+	if(mod=='unFinishedPlan'){
+		var index=obj.index;
+		var arr=JSON.parse(sto(mod));
+		arr[index].countNumEnd++
+		sto(mod,JSON.stringify(arr))
+	}
+}
+export {settingData,contentListData,headContentData,contentSaveData as saveData,countAdd,dataUpdate}

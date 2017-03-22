@@ -60,6 +60,7 @@ input{
 					content:this.temContent,
 					countNum:this.num,
 					startTime:time.getTime(),
+					countNumEnd:"0",//默认已完成的数目为0
 				}
 				saveData(obj,'list');
 				history.go(-1)

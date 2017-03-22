@@ -42,6 +42,13 @@ var sel=(function(){
 			for(var i in obj){if(hasOwnproperty(obj,i)){arr.push(i)}}
 			return arr
 		}
+	};
+	_.newArr=(num,fn)=>{
+		var arr=[];
+		for(var i=0;i<num;i++){
+			fn.call(arr,i);
+		}
+		return arr
 	}
 	_.isObject=isObject;
 	_.isString=isString;

@@ -1,5 +1,5 @@
 <template>
-		<div class='container' @click='editStateChild' @touchstart='touchFn' :class='{complete:isComplete}'>
+		<div class='container' @click='editStateChild' @touchstart='touchFn' @touchend='touchFn' :class='{complete:isComplete,bo_red:isRed}'>
 			<div class='done' @touchstart='completeFn' :class={dn:isNone} >X</div>
 			<div class="textdiv">
 				<span>计划</span>
@@ -28,6 +28,9 @@
 		margin:5px auto;
 		position:relative;
 		transition: all 0.3s;
+	}
+	.bo_red{
+		border:1px solid red;
 	}
 	.complete{
 		margin:0;
@@ -66,19 +69,28 @@
 </style>
 <script>
 	module.exports={
-		props:['content','nums'],
+		props:['content','nums','isRed'],
 		data:function(){
 			return {
-				isComplete:false,
-				isNone:false
+				isComplete: false,
+				isNone: false,
+				bool: false,
 			}
 		},
 		methods:{
 			editStateChild:function(){
 				this.$emit('editStateChild')
 			},
-			touchFn:function(){
-				this.$emit('touchFn')
+			touchFn:function(e){
+				if(e.type=='touchstart'){
+					var _this=this;
+					this.bool=true;
+					setTimeout(function(){
+						if(_this.bool){
+							_this.$emit('touchFn');
+						}
+					},500)//长按0.5s
+				}else if(e.type=='touchend'){this.bool=false}
 			},
 			completeFn:function(){
 				this.isComplete=true;
