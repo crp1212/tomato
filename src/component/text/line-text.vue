@@ -1,17 +1,22 @@
 <template>
-	<div class='textList'>
+	<div class='textList' @click='touchRight'>
 		<div class="textList-left">{{options}}</div>
-		<div class="textList-right" contenteditable="true">{{nums}}</div>
+		<div class="textList-right" :contenteditable="isEdit">{{nums}}</div>
 	</div>
 </template>
 <script>
 	export default {
-		props:['options','nums'],
+		props:['options','nums','isEdit'],
 		data:function(){
 			return {
 				
 			}
 		},
+		methods:{
+			touchRight:function(){
+				this.$emit('touchRight')
+			}
+		}
 	}
 </script>
 <style scoped>

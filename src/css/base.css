@@ -1,5 +1,5 @@
 *{margin:0;padding:0;}
-body{width:100vw;height:100vh;padding-top: 50px;box-sizing: border-box;}
+body{width:100vw;height:100vh;padding-top: 60px;box-sizing: border-box;}
 a{text-decoration:none;text-indent: 50px; display:inline-block;width: 100%}
 #sidebar{
 	-webkit-transform:transition3d(0,0,0);
@@ -38,7 +38,7 @@ a{text-decoration:none;text-indent: 50px; display:inline-block;width: 100%}
 	top:0;
 	background: rgb(0,0,0);
 	opacity: 0;
-	z-index:2;
+	z-index:-1;
 	transition:all 0.2s;
 }
 /*icon*/

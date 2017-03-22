@@ -2,7 +2,8 @@
 	<div>
 		<head-child :title='headContent.title' :option='headContent.option' @headFn='headBtnFn'></head-child>
 		<btn-child v-for='item in btnArr' :options='item.option' :bool='item.val'></btn-child>
-		<text-child v-for='item in timeArr' :options='item.option' :nums='item.val'></text-child>	
+		<text-child v-for='item in timeArr' :options='item.option' :nums='item.val' isEdit='true'></text-child>
+		<text-child v-for='item in countArr' :options='item.option' :nums='item.val' isEdit='false'></text-child>	
 	</div>
 </template>
 <script>
@@ -15,7 +16,8 @@
 			return {
 				btnArr:settingData('btn'),
 				timeArr:settingData('time'),
-				headContent:headContentData('setting')
+				headContent:headContentData('setting'),
+				countArr:settingData('count')
 			}
 		},
 		components:{

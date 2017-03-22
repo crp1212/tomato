@@ -9,10 +9,10 @@ var touch=function(){
 			endX=touches[0].pageX;
 			if(endX-startX>50){
 				sel('#sidebar').css('left','0px');
-				sel('.cover_box').css('opacity','0.4')
+				sel('.cover_box').css({'opacity':0.4,'z-index':2})
 			}else if(startX-endX>50){
 				sel('#sidebar').css('left','-80%')
-				sel('.cover_box').css('opacity','0')			
+				sel('.cover_box').css({'opacity':0,'z-index':-1})			
 			}
 		}
 	}

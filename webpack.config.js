@@ -3,7 +3,7 @@ const ExtractTextPlugin=require("extract-text-webpack-plugin")
 module.exports={
 	entry:"./src/index.js",
 	output:{
-		path:'e:/tryit/tomato/js/build',
+		path:'./build',
 		filename:"crp.js"
 	},
 	module:{
@@ -23,7 +23,7 @@ module.exports={
 			      {
 				      	test:/\.js$/,
 				      	exclude: /(node_modules|bower_components)/,
-						loader:"babel-loader",
+						loader:"babel-loader?presets[]=es2015",
       				},
 				{test:/\.css$/,loader:ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})},
 				{
@@ -33,7 +33,6 @@ module.exports={
 			    
 			    ]
 	},
-
 	plugins: [
         new ExtractTextPlugin("styles.css")
     ]

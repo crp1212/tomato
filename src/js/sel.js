@@ -1,5 +1,9 @@
 var sel=(function(){
 	var MAX_ARRAY_INDEX = Math.pow(2, 53) - 1;
+	//已有的原型函数封装
+	var hasOwnproperty=function(obj,key){
+		return Obejct.prototype.hasOwnproperty.call(obj,key)
+	}
 	//定义常用函数
 	var isArraylike=function(collection){
 		var length = collection != null && collection.length;
@@ -23,9 +27,22 @@ var sel=(function(){
 		this.nodeList=obj;
 	};
 	//定义工具函数
-	_.each=function(){
-
+	_.each=function(obj,fn){
+		if(isArray(obj)||isArraylike(obj)||isString(obj)){
+			for(var i=0,len=obj.length;i<len;i++){
+				var bool=fn(obj[i],i,obj);
+				if(bool==false){break}
+			}
+		}
 	};
+	_.keys=function(obj){
+		if(Obejct.keys){return Object.keys(obj)}
+		else{
+			var arr=[];
+			for(var i in obj){if(hasOwnproperty(obj,i)){arr.push(i)}}
+			return arr
+		}
+	}
 	_.isObject=isObject;
 	_.isString=isString;
 	//具体逻辑

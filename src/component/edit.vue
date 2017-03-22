@@ -63,7 +63,6 @@ input{
 				}
 				saveData(obj,'list');
 				history.go(-1)
-				console.log('11')
 			},
 			contentChange:function(){
 				this.temContent=document.getElementById('ele').innerText

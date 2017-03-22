@@ -72,10 +72,7 @@ const app = new Vue({
 			console.log('this')
 		},
 		countStartFn:function(){
-			var pp=[1,2,3]
-			pp.forEach(()=>{
-				console.log('a')
-			})
+			
 		},
 		scheduleFn:function(){
 			
