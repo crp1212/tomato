@@ -19,20 +19,21 @@
 		}
 	}
 </script>
-<style scoped>
-	.textList{height:45px;background: #f0f4f3;margin:5px 0;};
+<style scoped lang='sass'>
+@import "../../scss/rem" ;
+	.textList{height:pxToRem(45px);background: #f0f4f3;margin:5px 0;};
 	.textList-left{
-		min-width:30px;
-		height:45px;
-		line-height:45px;
+		min-width:pxToRem(30px);
+		height:pxToRem(45px);
+		line-height:pxToRem(45px);
 		float:left;
-		margin-left: 10px;
+		margin-left: pxToRem(10px);
 	}
 	.textList-right{
-		height:40px;
-		width:45px;
-		margin:0 10px;
-		line-height:45px;
+		height:pxToRem(40px);
+		width:pxToRem(45px);
+		margin:0 pxToRem(10px);
+		line-height:pxToRem(45px);
 		float:right;
 		text-align:center;
 	}

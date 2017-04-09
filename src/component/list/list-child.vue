@@ -19,18 +19,20 @@
 			</div>
 		</div>
 </template>
-<style scoped>
+<style scoped lang='sass'>
+@import "../../scss/rem" ;
+
 	.container{
-		border:1px solid blue;
-		border-radius: 20px;
+		border:pxToRem(1px) solid blue;
+		border-radius: pxToRem(20px);
 		width:95%;
-		height:90px;
-		margin:5px auto;
+		height:pxToRem(90px);
+		margin:pxToRem(5px) auto;
 		position:relative;
 		transition: all 0.3s;
 	}
 	.bo_red{
-		border:1px solid red;
+		border:pxToRem(1px) solid red;
 	}
 	.complete{
 		margin:0;
@@ -40,28 +42,38 @@
 	}
 	.done{
 		display: inline-block;
-		width:20px;
-		height:20px;
+		width:pxToRem(20px);
+		height:pxToRem(20px);
 		position:absolute;
 		text-align: center;
 		right:0;
-		top:-5px;
+		top:pxToRem(-5px);
 		color:white;
-		border-radius: 10px;
+		border-radius: pxToRem(10px);
 		background: gray;
 	}
-	.textdiv{width:100%;height:45px;line-height: 45px;overflow:hidden;}
-	.textdiv span{float:left;}
-	.textdiv span:nth-child(1){margin:0 10px ;}
-	.textdiv span:nth-child(2){display:inline-block;max-width:80%;text-overflow: ellipsis;white-space: nowrap;overflow:hidden;}
-	.uls{list-style: none;line-height: 45px;height:45px;}
-	.uls li{
-		/* background:url(./images/dark.png); */
-		width:30px;
-		height:30px;
-		float:left;
-		background-size: cover;
-		margin:7.5px 5px;
+	.textdiv{
+		width:100%;
+		height:pxToRem(45px);
+		line-height: pxToRem(45px);
+		overflow:hidden;
+		span{
+			float:left;
+			&:nth-child(1){margin:0 10px ;};
+			&:nth-child(2){display:inline-block;max-width:80%;text-overflow: ellipsis;white-space: nowrap;overflow:hidden;}
+		}
+	}
+	.uls{
+		list-style: none;
+		line-height: pxToRem(45px);
+		height:pxToRem(45px);
+		li{
+			width:pxToRem(30px);
+			height:pxToRem(30px);
+			float:left;
+			background-size: cover;
+			margin:pxToRem(7.5px) pxToRem(5px);
+		}
 	}
 	.fl{float:left;}
 	.dib{display:inline-block;}

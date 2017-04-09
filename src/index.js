@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import {sel} from './js/sel.js'
 import {touch} from './js/touch.js'
 Vue.use(VueRouter);
-require('./css/base.css');
+require('./css/base.scss');
 'use strict'
 const count = require('./component/count.vue')
 const edit  = require("./component/edit.vue")

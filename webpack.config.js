@@ -17,7 +17,8 @@ module.exports={
 			              use: 'css-loader',
 			              fallback: 'vue-style-loader' // <- this is a dep of vue-loader, so no need to explicitly install if using npm3
 			            }),
-			            js:'babel-loader?presets[]=es2015'
+			            js:'babel-loader?presets[]=es2015',
+			
 			          }
 			        }
 			      },
@@ -26,10 +27,21 @@ module.exports={
 				      	exclude: /(node_modules|bower_components)/,
 						loader:"babel-loader?presets[]=es2015",
       				},
-				{test:/\.css$/,loader:ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})},
+				{test:/\.css$/,use:ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})},
+				{
+					test: /\.scss$/,
+					loader: ExtractTextPlugin.extract({
+						use: [{
+		                    loader: "css-loader"
+		                }, {
+		                    loader: "sass-loader"
+		                }],
+		                // use style-loader in development
+		                fallback: "style-loader"
+					})},
 				{
 					test:/\.(png|jpg|gif)$/,
-					loader:"url-loader?limit=8192&name=img/[name][hash:8].[ext]"
+					loader:"url-loader?limit=8192 &name=img/[name][hash:8].[ext]"
 				}
 			    
 			    ]

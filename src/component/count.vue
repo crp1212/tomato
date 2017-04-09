@@ -92,7 +92,19 @@
 		 },
 	}
 </script>
-<style scope>
-	#canvas{position:absolute;top:-50px;}
-	.start{position:absolute;height:100vh;line-height:100vh;text-align:center;top:0;width:100%;font-size:40px}
+<style scope lang='sass'>
+	@import "../scss/rem" ;
+	#canvas{
+		position:absolute;
+		top:pxToRem(50px);
+	}
+	.start{
+		position:absolute;
+		height:100vh;
+		line-height:100vh;
+		text-align:center;
+		top:0;
+		width:100%;
+		font-size:pxToRem(40px);
+	}
 </style>

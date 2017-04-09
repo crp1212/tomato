@@ -19,7 +19,17 @@
 		}
 	}
 </script>
-<style scoped>
-.header{height:50px;background: #232323;text-align: center;line-height:50px;color:white;position:fixed;top:0;width:100%;z-index:1;}
-.header .right{position:absolute;right:10px;}
+<style scoped lang='sass'>
+@import "../../scss/rem" ;
+.header{
+	height:pxToRem(50px);
+	background: #232323;
+	text-align: center;
+	line-height:pxToRem(50px);
+	color:white;position:fixed;top:0;width:100%;z-index:1;
+	.right{
+		position:absolute;right:pxToRem(10px);
+	}
+}
+
 </style>

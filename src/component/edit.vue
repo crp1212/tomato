@@ -5,31 +5,45 @@
 		<div class="expected">
 			<span>{{state}}</span>
 			<!-- <span contenteditable="true" >{{num}}</span> -->
-			<span><input type="text" v-model='num' style="width:200px"></span>
+			<span><input type="text" v-model='num' ></span>
 		</div>
 	</div>
 </template>
-<style scoped>
-.textbox{height:100px;width:100%;;box-sizing: border-box;padding:10px;}
-.textbox:empty:before{
-    content: attr(placeholder)
+<style scoped lang='sass'>
+@import "../scss/rem" ;
+.textbox{
+	height:pxToRem(100px);
+	width:100%;
+	box-sizing: border-box;
+	padding:pxToRem(10px);
+	&:empty {
+		&:before{
+	    	content: attr(placeholder)
+		}
+	}
+	&:focus{/*焦点时内容为空*/
+		&:before{
+			content:none;
+		}
+	}
 }
-/*焦点时内容为空*/
-.textbox:focus:before{
-    content:none;
-}
-.expected {overflow:hidden;}
-.expected span{
-	float:left;
-	margin: 0 10px;
-	height:30px;
-	line-height:30px;
+.expected {
+	overflow:hidden;
+	span{
+		float:left;
+		margin: 0 pxToRem(10px);
+		height:pxToRem(30px);
+		line-height:pxToRem(30px);
+		input{
+			width:pxToRem(200px);
+		}
+	}
 }
 input{
 	position: relative;
 	border:none;
-	font-size:20px;
-	top:1px;
+	font-size:pxToRem(20px);
+	top:pxToRem(1px);
 }
 </style>
 <script>

@@ -22,42 +22,47 @@
 		}
 	}
 </script>
-<style scoped>
-	.btnList{height:45px;background: #f0f4f3;margin:5px 0;}
-		.btnList div:nth-child(1){
-			min-width:30px;
-			height:45px;
-			line-height:45px;
+<style scoped lang='sass'>
+	@import "../../scss/rem" ;
+	.btnList{
+		height:pxToRem(45px);
+		background: #f0f4f3;
+		margin:pxToRem(5px) 0;
+		div:nth-child(1){
+			min-width:pxToRem(30px);
+			height:pxToRem(45px);
+			line-height:pxToRem(45px);
 			float:left;
-			margin-left: 10px;
+			margin-left: pxToRem(10px);
 		}
+	}
 		.btns{
 			float:right;
-			width:45px;
-			height:20px;
-			border-radius: 10px;
-			margin:12px 10px;
+			width:pxToRem(45px);
+			height:pxToRem(20px);
+			border-radius: pxToRem(10px);
+			margin:pxToRem(12px) pxToRem(10px);
+			&:before{
+				content:"";
+				display:inline-block;
+				width:pxToRem(20px);
+				height:pxToRem(20px);
+				border-radius: pxToRem(10px);
+				background:white;
+				position:relative;
+				transition: left 0.5s;
+			}
 		}
 		.btnOn{
 			background:#00E367;
-		}
-		.btns:before{
-			content:"";
-			display:inline-block;
-			width:20px;
-			height:20px;
-			border-radius: 10px;
-			background:white;
-			position:relative;
-			transition: left 0.5s;
-		}
-		.btnOn:before{
-			left:24px;
+			&:before{
+				left:pxToRem(24px);
+			}
 		}
 		.btnOff{
 			background: gray;
-		}
-		.btnOff:before{
-			left:0;
+			&:before{
+				left:0;
+			}
 		}
 </style>
