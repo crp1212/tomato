@@ -23,7 +23,7 @@
 @import "../../scss/rem" ;
 
 	.container{
-		border:pxToRem(1px) solid blue;
+		border:1px solid blue;
 		border-radius: pxToRem(20px);
 		width:95%;
 		height:pxToRem(90px);
@@ -32,7 +32,7 @@
 		transition: all 0.3s;
 	}
 	.bo_red{
-		border:pxToRem(1px) solid red;
+		border:1px solid red;
 	}
 	.complete{
 		margin:0;

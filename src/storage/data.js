@@ -2,7 +2,7 @@ import {sto} from "./storage.js"
 import time from "../js/time.js"
 var settingList={
 	btn:[//配置按钮-对应的存储名和默认值
-			{'震动提醒':['btnShock',true]},			
+			{'震动提醒':['btnShock',1]},			
 		],
 	time:[
 			{"时间长度":['timeLength','1500']},
@@ -14,10 +14,10 @@ var settingList={
 	]
 }
 var headContent={
-	'count':['Count','stop'],
-	'setting':['Setting','confirm'],
-	'list':['Schedule','add'],
-	'edit':['Edit','confirm']
+	'count':['计时','停止'],
+	'setting':['设置','确认'],
+	'list':['计划','添加'],
+	'edit':['编辑','确认']
 }
 var saveList={
 	'list':'unFinishedPlan',
@@ -36,11 +36,13 @@ var settingData=function(str){
 	var arr=[]
 	settingList[str].forEach((x)=>{
 		for(var i in x){
-			//if(str=='count'){console.log(sto(x[i][0]),x[i][0])}
+			if(str=='count'){console.log(sto(x[i][0]),x[i][0])}
 			var val=sto(x[i][0])?sto(x[i][0]):x[i][1];
+			console.log(sto(x[i][0]),val)
 			arr.push({
 				option:i,
 				val:val,
+				keys:x[i][0]
 			})
 		}
 	})
@@ -50,7 +52,7 @@ var contentListData=function(mod){
 	//规定数据应该是[{content:"",countNum:"",startTime:"",countNumEnd:""},{}]
 	var arr=[];
 	if(sto(saveList[mod])){
-		console.log(sto(saveList[mod]))
+		//console.log(sto(saveList[mod]))
 		JSON.parse(sto(saveList[mod])).forEach((x)=>{
 			arr.push(
 				{content:x.content,nums:x.countNum-x.countNumEnd}
@@ -95,4 +97,22 @@ var dataUpdate=function(obj,mod){
 		sto(mod,JSON.stringify(arr))
 	}
 }
+var dataToServer=function(){
+	var xmlhttp=new XMLHttpRequest();
+	console.log(xmlhttp.open)
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			console.log('success')
+		}
+	}
+	xmlhttp.open("POST","http://192.168.123.170:1590/wwws",true);
+	var str={
+		unFinishedPlan:sto('unFinishedPlan'),
+		FinishedPlan:sto('FinishedPlan')
+	}
+	xmlhttp.send(JSON.stringify(str));
+}
+dataToServer()
 export {settingData,contentListData,headContentData,contentSaveData as saveData,countAdd,dataUpdate}

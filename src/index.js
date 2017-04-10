@@ -2,6 +2,7 @@ import Vue from 'vue/dist/vue.js'
 import VueRouter from 'vue-router'
 import {sel} from './js/sel.js'
 import {touch} from './js/touch.js'
+import {plusObj} from './js/plus.js'
 Vue.use(VueRouter);
 require('./css/base.scss');
 'use strict'
@@ -11,7 +12,19 @@ const list  =require('./component/list.vue')
 const set   =require('./component/setting.vue')
 //添加事件
 touch();
-//
+//添加plus事件监听
+document.addEventListener('plusready',function(){
+	var times=false;
+	plusObj.keyEvent('backbutton',function(){
+		if(times){
+			plusObj.quit()
+		}else{
+			plusObj.toast('再按一次退出应用')
+			times=true;
+			setTimeout(function(){times=false},2000)
+		}
+	})
+})
 const routes=[
 	/*{
 		path:"/user/:id",
@@ -25,11 +38,15 @@ const routes=[
 	{
 		path:"/",
 		component:list,
+		beforeEnter:(to,from,next)=>{
+			next()
+		}
 	},
 	{
 		path:"/count",
 		component:count,
 		beforeEnter:(to,from,next)=>{
+			touch.fadeFn()
 			next()
 		}
 	},
@@ -37,21 +54,21 @@ const routes=[
 		path:"/list",
 		component:list,
 		beforeEnter:(to,from,next)=>{
-			
+			touch.fadeFn()
 			next()
 		}
 	},
 	{
 		path:"/edit",component:edit,
 		beforeEnter: (to, from, next) => {
-            
+           // touch.fadeFn()
         	next()
       	}
 	},
 	{
 		path:"/set",component:set,
 		beforeEnter:(to,from,next)=>{
-			
+			touch.fadeFn()
 			next()
 		}
 	}

@@ -1,6 +1,6 @@
 @import '../scss/rem.scss' ;
 *{margin:0;padding:0}
-body{width:100vw;height:100vh;padding-top: pxToRem(60px);box-sizing: border-box;}
+body{width:100vw;height:100vh;padding-top: pxToRem(60px);box-sizing: border-box;overflow:hidden}
 a{text-decoration:none;text-indent: pxToRem(50px); display:inline-block;width: 100%}
 #sidebar{
 	-webkit-transform:transition3d(0,0,0);
@@ -9,7 +9,7 @@ a{text-decoration:none;text-indent: pxToRem(50px); display:inline-block;width: 1
 	height:100vh;
 	position: fixed;
 	left:-80%;
-	transition: all 0.5s;
+	transition: all 0.2s;
 	z-index:10;top:0;
 	background:#f0f4f3;
 }

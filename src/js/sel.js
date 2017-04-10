@@ -33,6 +33,11 @@ var sel=(function(){
 				var bool=fn(obj[i],i,obj);
 				if(bool==false){break}
 			}
+		}else if(isObject(obj)){
+			for(var i in obj){
+				var bool=fn(obj[i],i,obj);
+				if(bool==false){break}
+			}
 		}
 	};
 	_.keys=function(obj){
@@ -54,7 +59,7 @@ var sel=(function(){
 	_.isString=isString;
 	//具体逻辑
 	List.prototype.addEvent=function(type,fn,bool){
-		var bool=typeof bool =='boolean'?bool:fasle;
+		var bool=typeof bool =='boolean'?bool:false;
 		for(var i=0,len=this.nodeList.length;i<len;i++){
 			this.nodeList[i].addEventListener(type,fn,bool)
 		}

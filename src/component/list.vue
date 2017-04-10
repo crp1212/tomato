@@ -39,7 +39,9 @@
 			editStatePar:function(){
 			},
 			headBtnFn:function(){//右侧按钮执行函数
-				location.href=location.href.replace("/list","/edit");
+				
+				location.href=location.href.replace(/\/list$|\/$/,"/edit");
+				console.log(location.href)
 				console.log(this.doArr)
 			},
 			completeFn:function(index){

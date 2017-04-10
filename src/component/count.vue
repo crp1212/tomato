@@ -2,13 +2,14 @@
 	<div>
 		<head-child :title='headContent.title' :option='headContent.option' @headFn='headBtnFn'></head-child>
 		<canvas :width='winWidth' :height='winHeight' id="canvas"></canvas>
-		<div class="start" v-show='isShow' @click='countStart'>开始</div>
+		<div class="start" v-show='isShow' :class={restState:isRest} @click='countStart'>{{title}}</div>
 	</div>
 </template>
 <script>
 	import headChild from './text/header-text.vue'
 	import {headContentData,dataUpdate} from "../storage/data.js"
 	import {sto} from "../storage/storage.js"
+	import {plusObj} from "../js/plus.js"
 	export default {
 		data:function(){
 			return {
@@ -17,6 +18,8 @@
 				winHeight:window.innerHeight,
 				isShow:true,
 				timer:"",
+				title:"开始",
+				isRest:false,
 			}
 		},
 		components:{
@@ -65,23 +68,47 @@
 						sec--;
 						i=0;
 					};
+					ctx.clearRect(0,0,winWidth,winHeight)
 					if(sec==0){//计时完毕后
 						clearInterval(_this.timer);
-						var index=JSON.parse(sto('planDoing')).index;
-						dataUpdate({"index":index},'unFinishedPlan')
+						if(JSON.parse(sto('planDoing'))){
+							var index=JSON.parse(sto('planDoing')).index;
+							dataUpdate({"index":index},'unFinishedPlan')
+						}
+						plusObj.vibrate(5,1);
+						if(!this.isRest){
+							this.restFn()
+						}else{
+							this.isRest=false;
+							this.isShow=true;
+							this.title='开始'
+						}
+						return ''
 					 }
-					ctx.clearRect(0,0,winWidth,winHeight)
+
 					run();
 				},1000/sep)
 			},
 			countStart:function(){
 				this.isShow=false;
-				this.countFn(3,25);
+				var timeVal=sto('timeLength')||1500
+				console.log(timeVal)
+				this.countFn(timeVal,25);
 			},
 			headBtnFn:function(){
 				this.isShow=true;
+				this.isRest=false;
+				this.title='开始'
 				this.ctx.clearRect(0,0,this.winWidth,this.winHeight)
 				clearInterval(this.timer)
+			},
+			restFn:function(){
+				this.title='休息时间';
+				this.isShow=true;
+				this.isRest=true;
+				var timeVal=sto('timeRest')||200
+				console.log(timeVal)
+				this.countFn(timeVal,25);
 			}
 		},
 		created:function(){
@@ -96,7 +123,7 @@
 	@import "../scss/rem" ;
 	#canvas{
 		position:absolute;
-		top:pxToRem(50px);
+		top:pxToRem(0px);
 	}
 	.start{
 		position:absolute;
@@ -106,5 +133,8 @@
 		top:0;
 		width:100%;
 		font-size:pxToRem(40px);
+	}
+	.restState{
+		top:pxToRem(-150px);
 	}
 </style>

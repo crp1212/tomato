@@ -6,7 +6,7 @@
 </template>
 <script>
 	export default {
-		props: ['options','bool'],
+		props: ['options','bool','keys'],
 		data:function(){
 			return {
 				isOn:this.bool,
@@ -18,7 +18,8 @@
 			changeState:function(){
 				this.isOn=!(this.isOn);
 				this.isOff=!(this.isOff);
-			}
+				this.$emit('dataChangeFn',this.keys,Number(this.isOn))
+			},
 		}
 	}
 </script>

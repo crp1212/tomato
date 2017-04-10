@@ -3,7 +3,8 @@ const ExtractTextPlugin=require("extract-text-webpack-plugin")
 module.exports={
 	entry:"./src/index.js",
 	output:{
-		path:'./build',
+		//path:'./build',
+		path:"D:/test/tomato/build",
 		filename:"crp.js"
 	},
 	module:{
@@ -47,6 +48,11 @@ module.exports={
 			    ]
 	},
 	plugins: [
-        new ExtractTextPlugin("styles.css")
+        new ExtractTextPlugin("styles.css"),
+        /*new webpack.optimize.UglifyJsPlugin({
+	      compress: {
+	        warnings: false
+	      }
+	    })*/
     ]
 }
